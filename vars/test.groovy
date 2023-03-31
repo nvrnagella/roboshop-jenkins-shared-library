@@ -1,4 +1,4 @@
-def test1(){
+def new1(){
     def abc = "Hello"
     def xyz = 10
 
