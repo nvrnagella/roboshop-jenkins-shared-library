@@ -1,5 +1,5 @@
 def new1(){
-    def abc = "Hello"
+    print "Hello"
     def xyz = 10
 
     print "abc = ${abc}"
