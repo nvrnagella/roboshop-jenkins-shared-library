@@ -11,3 +11,14 @@ def compile(){
         sh 'go build'
     }
 }
+def unittests(){
+    if ( app_lang == "nodejs"){
+        sh 'npm test'
+    }
+    if ( app_lang == "maven"){
+        sh 'mvn package'
+    }
+    if ( app_lang == "golang"){
+        sh 'go test'
+    }
+}
