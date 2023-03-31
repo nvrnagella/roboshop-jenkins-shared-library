@@ -6,4 +6,9 @@ def new1(){
     print "xyz = ${xyz}"
 
     print abc
+    if ( abc == "some data"){
+            print YES
+        else
+            print NO
+    }
 }
