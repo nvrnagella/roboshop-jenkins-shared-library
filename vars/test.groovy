@@ -21,5 +21,9 @@ def new1(){
     for (i=0;i<5;i++){
         println(i)
     }
+    def fruits = ["apple","banana","mango"];
+    for (i in fruits){
+        println(i)
+    }
 
 }
