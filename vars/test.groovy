@@ -5,5 +5,5 @@ def new1(){
     print "abc = ${abc}"
     print "xyz = ${xyz}"
 
-    print "abc = ${abc}"
+    print abc
 }
