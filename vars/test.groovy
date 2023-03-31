@@ -12,5 +12,11 @@ def new1(){
         else{
             print "NO"
         }
+    x = 10
+    y = 0
+    while(x>y){
+        println "${y}"
+        y++
+    }
 
 }
