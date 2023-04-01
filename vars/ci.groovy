@@ -21,11 +21,12 @@ def call(){
                 }
             }
             stage('quality control'){
+                environment{
+                   SONAR_USER= '$(aws ssm get-parameters --region us-east-1 --names sonarqube.user --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                    SONAR_PASS= '$(aws ssm get-parameters --region us-east-1 --names sonarqube.pass --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                }
                 steps{
-                    withAWSParameterStore(credentialsId: '', naming: 'relative', path: '/service', recursive: true, regionName: 'us-east-1'){
-                        echo "Hello"
-                    }
-                    //sh 'sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=cart'
+                    sh "sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=cart"
                 }
             }
             stage('upload to centralized place'){
