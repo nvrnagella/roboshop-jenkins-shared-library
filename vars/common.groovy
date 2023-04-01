@@ -6,6 +6,7 @@ def compile(){
         sh 'mvn package'
     }
     if ( app_lang == "golang"){
+        sh 'go clean -i'
         sh 'go mod init dispatch'
         sh 'go get'
         sh 'go build'
