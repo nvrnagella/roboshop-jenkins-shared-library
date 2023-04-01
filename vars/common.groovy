@@ -28,5 +28,5 @@ def unittests(){
     }
 }
 def email(email_note){
-    mail bcc: '', body: 'TEST TEST TEST TESTED', cc: '', from: 'nvrnagella90@gmail.com', replyTo: 'nvrnagella@gmail.com', subject: 'TEST FROM JENKINS', to: ''
+    mail bcc: '', body: 'test email on failure', cc: '', from: 'nvrnagella90@gmail.com', replyTo: '', subject: 'test email on failure', to: 'nvrnagella@gmail.com'
 }
