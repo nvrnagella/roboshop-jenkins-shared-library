@@ -23,4 +23,7 @@ def unittests(){
     if ( app_lang == "golang"){
         sh 'go test'
     }
+    if ( app_lang == "python" ){
+        sh 'python3 -m unittest'
+    }
 }
