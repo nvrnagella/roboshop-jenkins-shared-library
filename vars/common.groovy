@@ -14,7 +14,8 @@ def compile(){
 def unittests(){
     //developer is missing unittests cases in this project as a best practice he needs to add them
     if ( app_lang == "nodejs"){
-        sh 'npm test || true'
+        //sh 'npm test || true'
+        sh 'npm test'
     }
     if ( app_lang == "maven"){
         sh 'mvn test'
@@ -25,4 +26,7 @@ def unittests(){
     if ( app_lang == "python" ){
         sh 'python3 -m unittest'
     }
+}
+def email(email_note){
+    println email_note
 }
