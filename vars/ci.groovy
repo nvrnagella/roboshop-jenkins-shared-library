@@ -22,7 +22,10 @@ def call(){
             }
             stage('quality control'){
                 steps{
-                    echo 'quality control'
+                    withAWSParameterStore(credentialsId: '', naming: 'relative', path: '/service', recursive: true, regionName: 'us-east-1'){
+                        echo "Hello"
+                    }
+                    //sh 'sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=cart'
                 }
             }
             stage('upload to centralized place'){
