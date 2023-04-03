@@ -28,9 +28,12 @@ def call(){
                     //sh "sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
                 }
             }
-            stage('upload to centralized place') {
-                echo 'upload'
+            if(env.PUSH_CODE == "true"){
+                stage('upload to centralized place') {
+                    echo 'upload'
+                }
             }
+
         }
     }catch (Exception e){
         common.email("failed")
