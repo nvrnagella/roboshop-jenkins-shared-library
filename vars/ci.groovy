@@ -8,6 +8,7 @@ def call(){
                 cleanWs()
                 git branch: 'main', url: "https://github.com/nvrnagella/${component}"
                 sh 'env'
+                sh 'env'
             }
             stage('compile/built') {
                 common.compile()
