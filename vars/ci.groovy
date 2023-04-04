@@ -1,13 +1,13 @@
 def call() {
     if (!env.SONAR_EXTRA_OPTS) {
         env.SONAR_EXTRA_OPTS = ""
-
+    }
 
     if (!env.TAG_NAME) {
         env.PUSH_CODE = "false"
     } else {
         env.PUSH_CODE = "true"
-    }}
+    }
 
     try {
         node('workstation') {
@@ -28,13 +28,12 @@ def call() {
                 //wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_PASS}", var: 'SECRET']]]) {
                 //sh "sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
             }
-        }
-        if (env.PUSH_CODE == "true") {
-            stage('upload to centralized place') {
-                common.artifactPush()
+            if (env.PUSH_CODE == "true") {
+                stage('upload to centralized place') {
+                    common.artifactPush()
+                }
             }
         }
-
     }
     catch (Exception e) {
         common.email("failed")
