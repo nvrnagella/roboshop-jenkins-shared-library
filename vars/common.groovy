@@ -34,7 +34,7 @@ def email(email_note){
 
 def artifactPush(){
     if (app_lang == "nodejs"){
-        zip -r cart-${TAG_NAME}.zip node_modules server.js
+        sh "zip -r cart-${TAG_NAME}.zip node_modules server.js"
     }
     ls -l
 }
