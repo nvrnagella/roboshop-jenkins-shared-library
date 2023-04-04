@@ -12,10 +12,7 @@ def compile(){
         sh 'go build'
     }
 }
-def email(email_note){
-    echo "sending email on job failure"
-    // mail bcc: '', body: "job failure - ${JOB_BASE_NAME} \n ${JOB_NAME} \n jenkins URL ${JOB_URL}", cc: '', from: 'nvrnagella90@gmail.com', replyTo: '', subject: 'test from jenkins', to: 'nvrnagella@gmail.com'
-}
+
 def unittests(){
     //developer is missing unittests cases in this project as a best practice he needs to add them
     if ( app_lang == "nodejs"){
@@ -44,6 +41,11 @@ def artifactPush(){
     wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${NEXUS_PASS}", var: 'SECRET']]]) {
         sh "curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file ${component}-${TAG_NAME}.zip http://18.207.181.87:8081/repository/${component}/${component}-${TAG_NAME}.zip"
 }
+}
+
+def email(email_note){
+    echo "sending email on job failure"
+    // mail bcc: '', body: "job failure - ${JOB_BASE_NAME} \n ${JOB_NAME} \n jenkins URL ${JOB_URL}", cc: '', from: 'nvrnagella90@gmail.com', replyTo: '', subject: 'test from jenkins', to: 'nvrnagella@gmail.com'
 }
 
 
