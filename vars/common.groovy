@@ -4,7 +4,7 @@ def compile(){
         //sh 'env'
     }
     if ( app_lang == "maven"){
-        sh 'mvn package'
+        sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
     }
     if ( app_lang == "golang"){
         sh 'go mod init dispatch || true'
@@ -36,7 +36,10 @@ def artifactPush(){
         sh "zip -r ${component}-${TAG_NAME}.zip node_modules server.js VERSION ${extraFiles}"
     }
     if (app_lang == "nginx" || app_lang == "python"){
-        sh "zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile"
+        sh "zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile ${extraFiles}"
+    }
+    if (app_lang == "maven"){
+        sh "zip -r ${component}-${TAG_NAME}.zip * ${component}.jar VERSION ${extraFiles}"
     }
 
     NEXUS_USER = sh ( script: 'aws ssm get-parameters --region us-east-1 --names nexus.user --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
