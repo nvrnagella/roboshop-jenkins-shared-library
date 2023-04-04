@@ -30,8 +30,9 @@ def unittests(){
 }
 
 def artifactPush(){
+    sh "echo ${TAG_NAME} > VERSION"
     if (app_lang == "nodejs"){
-        sh "zip -r cart-${TAG_NAME}.zip node_modules server.js"
+        sh "zip -r cart-${TAG_NAME}.zip node_modules server.js VERSION"
     }
     sh 'ls -l'
 }
