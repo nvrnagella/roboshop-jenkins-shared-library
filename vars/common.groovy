@@ -31,3 +31,10 @@ def unittests(){
 def email(email_note){
     mail bcc: '', body: "job failure - ${JOB_BASE_NAME} \n ${JOB_NAME} \n jenkins URL ${JOB_URL}", cc: '', from: 'nvrnagella90@gmail.com', replyTo: '', subject: 'test from jenkins', to: 'nvrnagella@gmail.com'
 }
+
+def artifactPush(){
+    if (app_lang == "nodejs"){
+        zip -r cart-${TAG_NAME}.zip node_modules server.js
+    }
+    ls -l
+}
