@@ -39,7 +39,7 @@ def artifactPush(){
         sh "zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile ${extraFiles}"
     }
     if (app_lang == "maven"){
-        sh "zip -r ${component}-${TAG_NAME}.zip * ${component}.jar VERSION ${extraFiles}"
+        sh "zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION ${extraFiles}"
     }
 
     NEXUS_USER = sh ( script: 'aws ssm get-parameters --region us-east-1 --names nexus.user --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
