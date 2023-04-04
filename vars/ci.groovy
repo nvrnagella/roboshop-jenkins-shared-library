@@ -32,6 +32,12 @@ def call() {
                 //wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_PASS}", var: 'SECRET']]]) {
                 //sh "sonar-scanner -Dsonar.host.url=http://172.31.6.251:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
             }
+            if (app_lang == "maven"){
+                stage('Build package'){
+                    sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
+                }
+            }
+
             if (env.PUSH_CODE == "true") {
                 stage('upload to centralized place') {
                     common.artifactPush()

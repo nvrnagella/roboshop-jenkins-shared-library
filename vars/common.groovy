@@ -4,7 +4,8 @@ def compile(){
         //sh 'env'
     }
     if ( app_lang == "maven"){
-        sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
+        sh "mvn clean compile"
+        //sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
     }
     if ( app_lang == "golang"){
         sh 'go mod init dispatch || true'
